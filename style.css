@@ -1,0 +1,199 @@
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: "Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3",メイリオ,Meiryo,"ＭＳ Ｐゴシック",-apple-system,system-ui,sans-serif;
+  font: inherit;
+  vertical-align: baseline;
+  color: #ecf0f1;
+  box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+  line-height: 1;
+  
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+button{
+  cursor: pointer;
+  font: inherit;
+  border: none;
+}
+label{
+    cursor: pointer;
+    display: inline-block;
+    margin: 0px 8px 8px;
+}
+/* input[type="radio"]{
+    display: none;
+} */
+
+
+/* 以下オリジナルCSS */
+.main-container{
+    padding: 10px;
+    margin: 0px 30px;
+    display: flex;
+}
+.main-content__left{
+    width: 48%;
+}
+#paste-area{
+    margin: 24px 32px;
+}
+#paste-area > p{
+    /* padding: 8px; */
+}
+.header{
+    background-color: #043980;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 32px;
+    color: white;
+}
+.header-content__left{
+    display: flex;
+    align-items: center;
+    /* font-weight: bold; */
+    font-size: 18px;
+}
+.normal-btn{
+    background-color: #e67e22;
+    color: #ecf0f1;
+    padding: 8px 25px;
+    border: 1px solid #e67e22;
+    border-bottom: 3px solid rgb(168, 93, 0);
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.1s;
+}
+.normal-btn:hover{
+    opacity: 0.8;
+}
+input:checked + label{
+    color: #e67e22;
+    background-color: white;
+}
+.TKG-logo{
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+.caption{
+    color: #444;
+    font-size: 16px;
+    position: relative;
+    padding: 10px 0 2px 28px;
+    border-bottom: 2px solid #e67e22;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.caption::before,.caption::after{
+    content: "";
+    position: absolute;
+    margin: auto;
+}
+.caption::before{
+    width: 8px;
+    height: 8px;
+    top: 4px;
+    left: 14px;
+    background-color: #e67e22;
+    transform: rotate(50deg);
+}
+.caption::after{
+    width: 6px;
+    height: 6px;
+    top: 20px;
+    left: 6px;
+    background-color: #e67e22;
+    transform: rotate(20deg);
+}
+.school-btn__container > input{
+    /* display: none; */
+}
+.school-btn__container,.subject-btn__container,
+#unit-btn__container{
+    margin: 20px 0;
+    height: 70px;
+}
+#unit-btn__container > label{
+    width: 125px;
+    text-align: center;
+    line-height: 18px;
+}
+.none{
+    display: none;
+}
+.m-t-30px{
+    margin-top: 30px;
+}
+th,td{
+    padding: 10px 5px;
+    color: #444;
+    font-size: 14px;
+    border: 0px solid;
+}
+th{
+    background-color: #d0d0d0;
+    border-left:2px solid #ecf0f1;
+    border-right:2px solid #ecf0f1;
+
+}
+td{
+   margin-left: auto; 
+   border:2px solid #ecf0f1;
+   /* border-right:2px solid #ecf0f1; */
+}
+tr{
+    transition: 0.2s;
+    cursor: pointer;
+}
+tr:hover{
+    background-color: lightblue;
+}
+table{
+    display: table;
+    width: 100%;
+}
+.number-of-units{
+    width: 100px;
+}
+.table-row.active{
+    background-color: lightblue;
+}
