@@ -117,13 +117,18 @@ for(let $i=0; $i<$hs_subjects.length; $i++){
                 // $subject_id: 教科のID
                 // 科目のIDを取得
                 let $unit_id = $hs_subject.units[$k].unit_id;
-                let $unit = $hs_subject.units.find((unit)=>{
+                $unit = $hs_subject.units.find((unit)=>{
                     return unit.unit_id === $unit_id;
                 });
-                console.log($unit.textbooks);
-                
+
+                // console.log($unit.textbooks);
+                for(let $l=0; $l<$unit.textbooks.length; $l++){
+                    // 教材のIDを取得
+                    let $textbook_id = $unit.textbooks[$l].id;
+                };
             })
-        };
+        }
+
 
 
         // console.log($hs_subjects[0].id);
@@ -131,7 +136,35 @@ for(let $i=0; $i<$hs_subjects.length; $i++){
 };
 
 // ------------------------------------------------------------「高校」ボタンの処理
+// 教材テーブルの操作----------------------------------------------------
+$table_row = document.getElementsByClassName("table-row");
 
+    for(let $i=0; $i<$table_row.length; $i++){
+        // $table_row = クリックしたテーブルの行
+        $table_row[$i].addEventListener("click",()=>{
+            // トグルボタン風にする
+            let $active_row = document.getElementsByClassName("table-row active");
+            if($active_row.length == 1){
+                $active_row[0].classList.remove("active");
+            }
+            $table_row[$i].classList.toggle("active");
+
+
+            // 教材のIDを取得
+            let $textbook_id = $table_row[$i].id;
+ 
+            // ターゲットになる教材のオブジェクトを取得
+            $target_textbook = $unit.textbooks.find((textbook)=>{
+                return $textbook_id === textbook.id
+            })
+            console.log($target_textbook);
+            // textbook-areaに教材のcontentを出力する
+        });
+    }
+
+
+
+// --------------------------------------------------------------教材テーブルの操作
 // 「小学」「中学」ボタンの処理----------------------------------------------------
 const $ms_subjects = document.getElementsByName("ms-subject");
 
@@ -144,19 +177,19 @@ for(let $i=0; $i<$ms_subjects.length; $i++){
         });
 
         removeUnitBtn();
-        for(let $i=0; $i<$ms_subject.textbooks.length; $i++){
+        for(let $j=0; $j<$ms_subject.textbooks.length; $j++){
             // fragmentを生成
             let fragment = document.createDocumentFragment();
             // input要素を生成
             let input = document.createElement("input");
             input.type = "radio";
-            input.id = $ms_subject.textbooks[$i].id;
+            input.id = $ms_subject.textbooks[$j].id;
             input.name = "ms-textbook"
             // label要素を生成
             let label = document.createElement("label");
-            label.htmlFor = $ms_subject.textbooks[$i].id;
+            label.htmlFor = $ms_subject.textbooks[$j].id;
             label.classList.add("normal-btn");
-            label.innerHTML = $ms_subject.textbooks[$i].name;
+            label.innerHTML = $ms_subject.textbooks[$j].name;
 
             fragment.appendChild(input);
             fragment.appendChild(label);
@@ -170,22 +203,3 @@ for(let $i=0; $i<$ms_subjects.length; $i++){
 }
 // --------------------------------------------------「小学」「中学」ボタンの処理
 
-// 教材テーブルの操作----------------------------------------------------
-$table_row = document.getElementsByClassName("table-row");
-console.log($table_row.length);
-
-    for(let $i=0; $i<$table_row.length; $i++){
-        $table_row[$i].addEventListener("click",()=>{
-            let $active_row = document.getElementsByClassName("table-row active");
-            console.log($active_row);
-            if($active_row.length == 1){
-                $active_row[0].classList.remove("active");
-            }
-            
-            $table_row[$i].classList.toggle("active");
-        });
-    }
-
-
-
-// --------------------------------------------------教材テーブルの操作

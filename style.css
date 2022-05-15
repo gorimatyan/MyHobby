@@ -70,6 +70,10 @@ label{
 .main-content__left{
     width: 48%;
 }
+.main-content__right{
+    margin-left: 20px;
+    width: 48%;
+}
 #paste-area{
     margin: 24px 32px;
 }
@@ -175,19 +179,19 @@ th{
     border-right:2px solid #ecf0f1;
 
 }
-td{
+.table-row > td{
    margin-left: auto; 
    border:2px solid #ecf0f1;
    /* border-right:2px solid #ecf0f1; */
 }
-tr{
+.table-row{
     transition: 0.2s;
     cursor: pointer;
 }
-tr:hover{
+.table-row:hover{
     background-color: lightblue;
 }
-table{
+.main-content__left > table{
     display: table;
     width: 100%;
 }
@@ -196,4 +200,12 @@ table{
 }
 .table-row.active{
     background-color: lightblue;
+}
+.unit-list > table{
+    display: table;
+    width: 70%;
+    margin: 20px auto;
+}
+.unit-list__content{
+    text-align: center;
 }
