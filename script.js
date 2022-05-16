@@ -138,27 +138,50 @@ for(let $i=0; $i<$hs_subjects.length; $i++){
 // ------------------------------------------------------------「高校」ボタンの処理
 // 教材テーブルの操作----------------------------------------------------
 $table_row = document.getElementsByClassName("table-row");
-
+    // 1、教材オブジェクトの取得
     for(let $i=0; $i<$table_row.length; $i++){
         // $table_row = クリックしたテーブルの行
         $table_row[$i].addEventListener("click",()=>{
-            // トグルボタン風にする
-            let $active_row = document.getElementsByClassName("table-row active");
-            if($active_row.length == 1){
-                $active_row[0].classList.remove("active");
-            }
-            $table_row[$i].classList.toggle("active");
+        // トグルボタン風にする
+        let $active_row = document.getElementsByClassName("table-row active");
+        if($active_row.length == 1){
+            $active_row[0].classList.remove("active");
+        }
+        $table_row[$i].classList.toggle("active");
 
-
-            // 教材のIDを取得
-            let $textbook_id = $table_row[$i].id;
- 
-            // ターゲットになる教材のオブジェクトを取得
-            $target_textbook = $unit.textbooks.find((textbook)=>{
-                return $textbook_id === textbook.id
-            })
-            console.log($target_textbook);
-            // textbook-areaに教材のcontentを出力する
+        // 教材のIDを取得
+        let $textbook_id = $table_row[$i].id; 
+        // ターゲットになる教材のオブジェクトを取得
+        $target_textbook = $unit.textbooks.find((textbook)=>{
+            return $textbook_id === textbook.id
+        })
+        
+                // 2、textbook-areaに教材のcontentを出力する-----------------
+                // 単元出力先のunit_listに要素があれば消しておく
+                let $unit_list = document.getElementById("unit-list");
+                while($unit_list.firstChild){
+                    $unit_list.removeChild($unit_list.firstChild);
+                };
+                
+                for(let $j=0; $j<$target_textbook.contents.length; $j++){
+                // 単元をブチ込む場所を取得
+                
+                
+                // fragmentを生成
+                let fragment = document.createDocumentFragment();
+                // tr要素を生成
+                let tr = document.createElement("tr");
+                tr.classList.add("unit-list__item");
+                // td要素を生成
+                let td = document.createElement("td");
+                td.innerHTML = $target_textbook.contents[$j];
+                td.colSpan = 3;
+                // ↑の要素らを順にネストしていく
+                tr.appendChild(td);
+                fragment.appendChild(tr);
+                $unit_list.appendChild(fragment);
+                console.log(td)
+                }
         });
     }
 
