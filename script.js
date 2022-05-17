@@ -17,6 +17,12 @@
 // 
 // （4）メンテナンス
 // 教材の追加はtextbook.jsとhtmlの書き換えが必要になる。
+function removeTable(){
+    let $textbook_list = document.getElementById("textbook-list");
+    while($textbook_list.firstChild){
+        $textbook_list.removeChild($textbook_list.firstChild);
+    };
+}
 function removeTextbookBtn(){
     let $btn_container = document.getElementById("textbook-btn__container");
     while($btn_container.firstChild){
@@ -29,7 +35,9 @@ function removeUnitBtn(){
         $btn_container.removeChild($btn_container.firstChild);
     };
     removeTextbookBtn();
+    removeTable();
 };
+
 
 
 const $primary_school_btn = document.getElementById("primarySchool");
@@ -87,6 +95,7 @@ for(let $i=0; $i<$hs_subjects.length; $i++){
 
         // unit-btn__containerの中身を全て消す
         removeUnitBtn();
+        removeTable();
         // for文で単元のinputとlabel（教科ボタン）を生成
         for(let $j=0; $j<$hs_subject.units.length; $j++){
             // fragmentを生成
@@ -114,80 +123,123 @@ for(let $i=0; $i<$hs_subjects.length; $i++){
         const $hs_units = document.getElementsByName("hs-unit");
         for(let $k=0; $k<$hs_units.length; $k++){
             $hs_units[$k].addEventListener("click",function(){
+                
                 // $subject_id: 教科のID
                 // 科目のIDを取得
                 let $unit_id = $hs_subject.units[$k].unit_id;
+                // 科目のオブジェクトを取得
                 $unit = $hs_subject.units.find((unit)=>{
                     return unit.unit_id === $unit_id;
                 });
 
-                // console.log($unit.textbooks);
-                for(let $l=0; $l<$unit.textbooks.length; $l++){
-                    // 教材のIDを取得
-                    let $textbook_id = $unit.textbooks[$l].id;
+        // 教材テーブルを作成---------------------------------------
+            // テーブルをリセット
+            removeTable();
+            let $textbook_list = document.getElementById("textbook-list");
+        for(let $l=0; $l<$unit.textbooks.length; $l++){
+            
+            // 教材のIDを取得
+            let $textbook_id = $unit.textbooks[$l].id;
+            
+            // IDから教材のオブジェクトを取得
+            $textbook = $unit.textbooks.find((textbook)=>{
+                return textbook.id === $textbook_id;
+            })
+            console.log($textbook.id);
+
+            // trを作る
+            let tr = document.createElement("tr");
+            tr.classList.add("table-row");
+            tr.id = $textbook.id
+            // 3つのtdタグを作る
+
+            // title（教材タイトル）
+            let td_title = document.createElement("td");
+            td_title.classList.add("table__title");
+            td_title.innerHTML = $textbook.title;
+            
+            // content_num（単元数）
+            let td_content_num = document.createElement("td");
+            td_content_num.classList.add("table__content-num");
+            td_content_num.innerHTML = $textbook.content_num;
+            
+            // level （教材レベル）
+            let td_level = document.createElement("td");
+            td_level.classList.add("table__level");
+            td_level.innerHTML = $textbook.level;
+            // tdのfragmentに入れる
+            let td_fragment = document.createDocumentFragment();
+            td_fragment.appendChild(td_title);
+            td_fragment.appendChild(td_content_num);
+            td_fragment.appendChild(td_level);
+            // trのfragmentに入れる
+            // let tr_fragment = document.createDocumentFragment();
+            tr.appendChild(td_fragment);
+            // div.textbook-listにtrのフラグメントを出力する
+
+            $textbook_list.appendChild(tr);
+            // ---------------------------------------教材テーブルを作成
+
+            // 教材テーブルの操作----------------------------------------------------
+            $table_row = document.getElementsByClassName("table-row");
+            // 1、教材オブジェクトの取得
+            for(let $i=0; $i<$table_row.length; $i++){
+                // $table_row = クリックしたテーブルの行
+                $table_row[$i].addEventListener("click",()=>{
+                // トグルボタン風にする
+                let $active_row = document.getElementsByClassName("table-row active");
+                if($active_row.length == 1){
+                    $active_row[0].classList.remove("active");
+                }
+                $table_row[$i].classList.toggle("active");
+
+                // 教材のIDを取得
+                let $textbook_id = $table_row[$i].id; 
+                // ターゲットになる教材のオブジェクトを取得
+                $target_textbook = $unit.textbooks.find((textbook)=>{
+                    return $textbook_id === textbook.id
+                })
+
+                        // 2、textbook-areaに教材のcontentを出力する-----------------
+                        // 単元出力先のunit_listに要素があれば消しておく
+                        let $unit_list = document.getElementById("unit-list");
+                        while($unit_list.firstChild){
+                            $unit_list.removeChild($unit_list.firstChild);
+                        };
+                        
+                        for(let $j=0; $j<$target_textbook.contents.length; $j++){
+                        // 単元をブチ込む場所を取得
+                        
+                        
+                        // fragmentを生成
+                        let fragment = document.createDocumentFragment();
+                        // tr要素を生成
+                        let tr = document.createElement("tr");
+                        tr.classList.add("unit-list__item");
+                        // td要素を生成
+                        let td = document.createElement("td");
+                        td.innerHTML = $target_textbook.contents[$j];
+                        td.colSpan = 3;
+                        // ↑の要素らを順にネストしていく
+                        tr.appendChild(td);
+                        fragment.appendChild(tr);
+                        $unit_list.appendChild(fragment);
+                        console.log(td)
+                        }
+                });
+            }
+
+
+
+            // --------------------------------------------------------------教材テーブルの操作
                 };
             })
         }
-
-
-
-        // console.log($hs_subjects[0].id);
     })
 };
 
 // ------------------------------------------------------------「高校」ボタンの処理
-// 教材テーブルの操作----------------------------------------------------
-$table_row = document.getElementsByClassName("table-row");
-    // 1、教材オブジェクトの取得
-    for(let $i=0; $i<$table_row.length; $i++){
-        // $table_row = クリックしたテーブルの行
-        $table_row[$i].addEventListener("click",()=>{
-        // トグルボタン風にする
-        let $active_row = document.getElementsByClassName("table-row active");
-        if($active_row.length == 1){
-            $active_row[0].classList.remove("active");
-        }
-        $table_row[$i].classList.toggle("active");
 
-        // 教材のIDを取得
-        let $textbook_id = $table_row[$i].id; 
-        // ターゲットになる教材のオブジェクトを取得
-        $target_textbook = $unit.textbooks.find((textbook)=>{
-            return $textbook_id === textbook.id
-        })
-        
-                // 2、textbook-areaに教材のcontentを出力する-----------------
-                // 単元出力先のunit_listに要素があれば消しておく
-                let $unit_list = document.getElementById("unit-list");
-                while($unit_list.firstChild){
-                    $unit_list.removeChild($unit_list.firstChild);
-                };
-                
-                for(let $j=0; $j<$target_textbook.contents.length; $j++){
-                // 単元をブチ込む場所を取得
-                
-                
-                // fragmentを生成
-                let fragment = document.createDocumentFragment();
-                // tr要素を生成
-                let tr = document.createElement("tr");
-                tr.classList.add("unit-list__item");
-                // td要素を生成
-                let td = document.createElement("td");
-                td.innerHTML = $target_textbook.contents[$j];
-                td.colSpan = 3;
-                // ↑の要素らを順にネストしていく
-                tr.appendChild(td);
-                fragment.appendChild(tr);
-                $unit_list.appendChild(fragment);
-                console.log(td)
-                }
-        });
-    }
-
-
-
-// --------------------------------------------------------------教材テーブルの操作
 // 「小学」「中学」ボタンの処理----------------------------------------------------
 const $ms_subjects = document.getElementsByName("ms-subject");
 
