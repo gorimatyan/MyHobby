@@ -77,6 +77,28 @@ const dragons_2006_members = members.map((output, index) => {
 });
 
 console.log(dragons_2006_members);
+// 小中学生の教科ボタンの処理
+for(let $j=0; $j<$ms_subject.textbooks.length; $j++){
+  // fragmentを生成
+  let fragment = document.createDocumentFragment();
+  // input要素を生成
+  let input = document.createElement("input");
+  input.type = "radio";
+  input.id = $ms_subject.textbooks[$j].id;
+  input.name = "ms-textbook"
+  // label要素を生成
+  let label = document.createElement("label");
+  label.htmlFor = $ms_subject.textbooks[$j].id;
+  label.classList.add("normal-btn");
+  label.innerHTML = $ms_subject.textbooks[$j].name;
+
+  fragment.appendChild(input);
+  fragment.appendChild(label);
+
+  document.getElementById("textbook-btn__container").appendChild(fragment);
+};
+
+
 
 // -------------------------------------------------------------------
 // const allSubject ={
