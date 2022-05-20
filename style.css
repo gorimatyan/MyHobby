@@ -228,7 +228,7 @@ th{
     margin: 20px auto;
 }
 .unit-list__item{
-    text-align: center;
+    /* text-align: center; */
     padding: 5px 0 15px 0;
 }
 .unit-list__item > td{
