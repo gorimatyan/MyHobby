@@ -97,7 +97,12 @@ for(let $j=0; $j<$ms_subject.textbooks.length; $j++){
 
   document.getElementById("textbook-btn__container").appendChild(fragment);
 };
-
+// {   
+//   id:"mc-e-2",
+//   title:"",
+//   level:"基礎",
+//   contents:["","","","","","","","","","","","","","","","","","","","","","","","","","","","",""],
+// },
 
 
 // -------------------------------------------------------------------
