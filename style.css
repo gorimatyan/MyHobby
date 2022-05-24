@@ -78,7 +78,8 @@ label{
     margin-left: 30px;
     width: 37%;
     height: 82vh;
-    position: fixed;
+    position: sticky;
+    top: 20px;
     left: 58%;
     
 }
@@ -91,7 +92,7 @@ label{
 }
 .header{
     background-color: #043980;
-    height: 60px;
+    height: 50px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -209,10 +210,11 @@ th{
     background-color: lightblue;
 }
 .unit-list{
-    position: fixed;
+    position: sticky;
+    top: 20px;
     overflow: auto;
     height: 84vh;
-    width: 37%;
+    width: 100%;
     /* border-bottom: 2px solid #e67e22; */
     overscroll-behavior: contain;
 }
