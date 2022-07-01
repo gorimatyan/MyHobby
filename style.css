@@ -234,5 +234,6 @@ th{
     padding: 5px 0 15px 0;
 }
 .unit-list__item > td{
-    padding: 5px 0 15px 0;
+    font-size: 12px;
+    padding: 0px 0 15px 0;
 }
