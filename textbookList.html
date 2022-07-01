@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TKG単元</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="textbook.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content__left">
+            <img class="TKG-logo" src="images/logo.jpg" alt="">
+            <h1>天神教室　教材検索</h1>
+        </div>
+        <div class="header-content__right"></div>
+    </header>
+    <main class="main-container">
+        <div class="main-content__left">
+            <div class="caption">学年</div>
+            <section class="school-btn__container">
+                <input type="radio" id="primarySchool" name="school"></input>
+                <label for="primarySchool" class="primary-school school-btn normal-btn">小学</label>
+                <input type="radio" id="middleSchool" name="school"></input>
+                <label for="middleSchool" class="middle-school school-btn normal-btn">中学</label>
+                <input type="radio" id="highSchool" name="school"></input>
+                <label for="highSchool" class="high-school school-btn normal-btn">高校</label>
+            </section>
+
+            <div class="caption">教科</div>
+            <section class="subject-btn__container">
+                <div id="ps-subjects__container" class="none">
+                    <input type="radio" id="ps-Eng" name="ps-subject">
+                    <label for="ps-Eng" class="normal-btn">英語</label>
+                    <input type="radio" id="ps-Japanese" name="ps-subject">
+                    <label for="ps-Japanese" class="normal-btn">国語</label>
+                    <input type="radio" id="ps-Math" name="ps-subject">
+                    <label for="ps-Math" class="normal-btn">算数</label>
+                    <input type="radio" id="ps-Sci" name="ps-subject">
+                    <label for="ps-Sci" class="normal-btn">理科</label>
+                    <input type="radio" id="ps-Soc" name="ps-subject">
+                    <label for="ps-Soc" class="normal-btn">社会</label>
+                </div>
+                <div id="ms-subjects__container" class="none">
+                    <input type="radio" id="ms-Eng" name="ms-subject">
+                    <label for="ms-Eng" class="normal-btn">英語</label>
+                    <input type="radio" id="ms-Japanese" name="ms-subject">
+                    <label for="ms-Japanese" class="normal-btn">国語</label>
+                    <input type="radio" id="ms-Math" name="ms-subject">
+                    <label for="ms-Math" class="normal-btn">数学</label>
+                    <input type="radio" id="ms-Sci" name="ms-subject">
+                    <label for="ms-Sci" class="normal-btn">理科</label>
+                    <input type="radio" id="ms-Soc" name="ms-subject">
+                    <label for="ms-Soc" class="normal-btn">社会</label>
+                </div>
+                <div id="hs-subjects__container" class="none">
+                    <input type="radio" id="hs-Eng" name="hs-subject">
+                    <label for="hs-Eng" class="normal-btn">英語</label>
+                    <input type="radio" id="hs-Japanese" name="hs-subject">
+                    <label for="hs-Japanese" class="normal-btn">国語</label>
+                    <input type="radio" id="hs-Math" name="hs-subject">
+                    <label for="hs-Math" class="normal-btn">数学</label>
+                    <input type="radio" id="hs-Sci" name="hs-subject">
+                    <label for="hs-Sci" class="normal-btn">理科</label>
+                    <input type="radio" id="hs-Soc" name="hs-subject">
+                    <label for="hs-Soc" class="normal-btn">社会</label>
+                </div>
+            </section>
+
+            <div id="unit-caption" class="caption m-t-30px none">科目</div>
+            <section id="unit-btn__container" class="none">
+                <!-- <div id="ps-units">
+                    
+                </div>
+                <div id="ms-units">
+
+                </div>
+                <div id="hs-units">
+
+                </div> -->
+            </section>
+
+            <div id="unit-caption" class="caption m-t-30px">教材名</div>
+            <section id="textbook-btn__container">
+            </section>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="title-name">教材名</th>
+                        <th class="number-of-units">単元数</th>
+                        <th>教材レベル</th>
+                    </tr>
+                </thead>
+                <tbody id="textbook-list">
+
+                </tbody>
+            </table>
+        </div>
+        
+
+        <div class="main-content__right">
+            <div id="unit-caption" class="caption">単元一覧</div>
+
+            <div class="selecter__container">
+
+            </div>
+            <div class="unit-list__bg">
+                <div class="unit-list">
+                    <table>
+                        <tbody id="unit-list">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <!-- <button onclick="addChild();">生成</button> -->
+
+
+</body>
+</html>
